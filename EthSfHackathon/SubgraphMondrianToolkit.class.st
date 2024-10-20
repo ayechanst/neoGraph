@@ -19,7 +19,8 @@ SubgraphMondrianToolkit >> arrow: anEdge [
 { #category : #'as yet unclassified' }
 SubgraphMondrianToolkit >> mondrianNode: aNode [
 	^ BlElement new
-		background: ((aNode typeName = 'Pool') ifTrue: [Color orange] ifFalse: [Color veryLightGray]);
+		background: ((aNode typeName = 'Pool') ifTrue: [Color veryLightGray] 
+		ifFalse: [Color orange]);
 		geometry: BlCircleGeometry new;
 		size: 80 @ 80; "(self nodeSize: aNode);"
 		clipChildren: false;

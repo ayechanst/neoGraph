@@ -39,7 +39,7 @@ SubgraphResults >> gtNounsMondrianFor: aView [
 	view layout force charge: -3000.
 
 	^ aView mondrian
-		title: 'Mondrian';
+		title: 'Nouns Mondrian';
 		priority: 90;
 		initialize: view
 ]
@@ -75,7 +75,7 @@ SubgraphResults >> gtSubgraphMondrianFor: aView [
 	view layout force charge: -3000.
 
 	^ aView mondrian
-		title: 'Mondrian';
+		title: 'Uniswap Mondrian';
 		priority: 90;
 		initialize: view
 ]

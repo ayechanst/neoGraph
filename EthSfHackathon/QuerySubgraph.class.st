@@ -74,12 +74,17 @@ QuerySubgraph >> newSubgraphOutput [
 ]
 
 { #category : #'as yet unclassified' }
+QuerySubgraph >> queriesForAzukis [
+]
+
+{ #category : #'as yet unclassified' }
 QuerySubgraph >> queriesForNouns [
 	^ {'{
   transferEvents(first: 20) {
     __typename
     id
     noun {
+      __typename
       id
       seed {
         accessory
@@ -87,6 +92,7 @@ QuerySubgraph >> queriesForNouns [
         body
         glasses
         head
+        __typename
         id
       }
     }
