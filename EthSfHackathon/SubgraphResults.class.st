@@ -9,6 +9,42 @@ Class {
 }
 
 { #category : #'as yet unclassified' }
+SubgraphResults >> gtNounsMondrianFor: aView [
+	<gtView>
+	| view edges toolkit nodes assocs fn |
+	view := GtMondrian new.
+	toolkit := SubgraphMondrianToolkit new.
+	nodes := Set new.
+	assocs := Set new.
+	fn := [ :each :parent | 
+		| node |
+		(each isKindOf: Dictionary)
+			ifTrue: [ node := Node new node: each.
+				nodes add: node.
+				parent ifNotNil: [ assocs add: parent -> node ].
+				each do: [ :e | fn value: e value value: node ] ].
+
+		(each isKindOf: Array) ifTrue: [ each do: [ :a | fn value: a value: parent ] ] ].
+	fn value: (self subgraphOutput first at: 'transferEvents') value: nil.
+
+	view nodes
+		stencil: [ :node | toolkit mondrianNode: node ];
+		with: nodes.
+
+
+	edges := view edges
+			stencil: [ :c | toolkit arrow: c ];
+			connectAssociations: assocs.
+
+	view layout force charge: -3000.
+
+	^ aView mondrian
+		title: 'Mondrian';
+		priority: 90;
+		initialize: view
+]
+
+{ #category : #'as yet unclassified' }
 SubgraphResults >> gtSubgraphMondrianFor: aView [
 	<gtView>
 	| view edges toolkit nodes assocs fn |
